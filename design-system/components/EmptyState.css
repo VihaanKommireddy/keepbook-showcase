@@ -1,0 +1,37 @@
+.kb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 420px;
+  margin: var(--space-7) auto;
+  text-align: center;
+}
+
+.kb-empty__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--sunken);
+  border: 1px solid var(--border);
+  color: var(--ink-3);
+}
+
+.kb-empty__message {
+  font-family: var(--font-display);
+  font-size: var(--text-md-size);
+  line-height: var(--text-md-lh);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+}
+
+.kb-empty__hint {
+  color: var(--ink-3);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  max-width: 40ch;
+}

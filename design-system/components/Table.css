@@ -1,0 +1,168 @@
+/* DataTable — the ledger. Tabular figures are set in mono so columns line up
+   like a rate book; headers are tracked small-caps over a hairline; rows are
+   divided by hairlines, not boxes. Class names + markup contract unchanged. */
+
+.kb-table__toolbar,
+.kb-table__batchbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 40px;
+  padding: var(--space-2) 0;
+}
+
+.kb-table__count {
+  margin-left: auto;
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  font-variant-numeric: tabular-nums;
+}
+
+.kb-table__batchbar {
+  background: var(--accent-subtle);
+  color: var(--accent-deep);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.kb-table__batchcount {
+  font-weight: var(--weight-label);
+}
+
+.kb-table__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+.kb-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+}
+
+.kb-table__table th {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-table-header);
+  height: 36px;
+  padding: 0 var(--space-4);
+  background: var(--sunken);
+  color: var(--ink-3);
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  font-weight: var(--weight-label);
+  text-transform: uppercase;
+  letter-spacing: 0.07em; /* the only all-caps allowed (§1.4) — tracked ledger head */
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.kb-table__th--numeric,
+.kb-table__td--numeric {
+  text-align: right !important;
+}
+
+/* Ledger figures: numeric columns render in mono with tabular digits so money,
+   dates and counts align down the column like a printed rate book. */
+.kb-table__td--numeric {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-sm-size);
+  color: var(--ink);
+}
+
+.kb-table__sortbtn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.kb-table__sortbtn:hover {
+  color: var(--ink);
+}
+
+.kb-table__table td {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+/* Compact is a padding change: `height` on a td is a minimum the content
+   always won, so the two rules it used to carry did nothing. */
+.kb-table__table--compact td {
+  padding: var(--space-1) var(--space-3);
+}
+
+.kb-table__table tbody tr {
+  transition: background-color var(--motion-fast);
+}
+
+.kb-table__table tbody tr:hover {
+  background: var(--sunken);
+}
+
+.kb-table__row--selected,
+.kb-table__table tbody tr.kb-table__row--selected:hover {
+  background: var(--accent-subtle);
+}
+
+.kb-table__table tbody tr:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.kb-table__td--link {
+  font-weight: var(--weight-label);
+}
+
+.kb-table__td--link a {
+  color: var(--accent-text);
+  text-decoration: none;
+}
+
+.kb-table__td--link a:hover {
+  text-decoration: underline;
+}
+
+.kb-table__checkcol {
+  width: 40px;
+  padding: 0 var(--space-1) !important;
+}
+
+.kb-table__table--sticky-first th:first-child,
+.kb-table__table--sticky-first td:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+}
+
+.kb-table__table--sticky-first th:first-child {
+  z-index: calc(var(--z-table-header) + 1);
+  background: var(--sunken);
+}
+
+.kb-table__footer {
+  padding: var(--space-2) 0;
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Single-click open (app UI refresh §5): the pointer says the row is a
+   target. The hover fill above (tbody tr:hover → --sunken) already applies. */
+.kb-table__row--openable {
+  cursor: pointer;
+}

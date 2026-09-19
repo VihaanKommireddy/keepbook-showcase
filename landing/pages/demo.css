@@ -1,0 +1,45 @@
+/* /demo — the request form inside the legal-page measure. Tokens only. */
+
+.kb-demo__lede {
+  margin: 0 0 var(--space-6);
+  color: var(--ink-2);
+  font-size: var(--text-md-size);
+  line-height: var(--text-md-lh);
+  max-width: 52ch;
+}
+
+.kb-demo__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 520px;
+}
+
+.kb-demo__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.kb-demo__alt {
+  margin: var(--space-6) 0 0;
+  color: var(--ink-3);
+}
+
+.kb-demo__error {
+  margin: 0;
+  color: var(--danger-text);
+}
+
+.kb-demo__done h2 {
+  margin: 0 0 var(--space-2);
+}
+
+/* The honeypot: present in the DOM, invisible to people, skipped by readers. */
+.kb-demo__hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

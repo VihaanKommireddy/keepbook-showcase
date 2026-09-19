@@ -1,0 +1,68 @@
+.kb-modal {
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-3);
+  max-height: 85vh;
+  width: 480px;
+  max-width: calc(100vw - 32px);
+}
+
+.kb-modal--wide {
+  width: 720px;
+}
+
+.kb-modal::backdrop {
+  background: rgb(18 25 23 / 0.5);
+}
+
+/* Fade + a 2% scale settle, the landing's pop curve. */
+@keyframes kb-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kb-modal {
+    animation: kb-modal-in 200ms var(--ease-pop) backwards;
+  }
+
+  .kb-modal::backdrop {
+    animation: kb-scrim-in 160ms ease-out backwards;
+  }
+}
+
+.kb-modal__inner {
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+.kb-modal__title {
+  font-size: var(--text-md-size);
+  line-height: var(--text-md-lh);
+  font-weight: var(--weight-heading);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.kb-modal__body {
+  padding: 0 var(--space-4) var(--space-4);
+  overflow-y: auto;
+}
+
+.kb-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+}

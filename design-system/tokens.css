@@ -1,0 +1,246 @@
+/*
+ * Keepbook design tokens (DESIGN-SYSTEM §1, verbatim hex values).
+ * Components reference SEMANTIC tokens only — never raw hex in component CSS.
+ *
+ * THEMES: exactly TWO complete named token sets, one per `data-theme` value.
+ * The registry in ds/themes.ts is the single source of truth for theme
+ * NAMES/DESCRIPTIONS/swatches shown in Settings — this file is the single
+ * source of truth for what each theme actually PAINTS. Every theme sets every
+ * token below; every theme is WCAG AA verified (text ≥4.5:1 on the
+ * backgrounds it appears on, UI/borders ≥3:1) — see the ratio comments in
+ * each block, computed with the same relative-luminance formula
+ * ds/components/a11y-fixes.test.tsx checks in code.
+ *
+ *   light — the warm-paper brand palette (paper + spruce green). Default.
+ *   dark  — the clean charcoal-green companion (green ink, same spruce accent).
+ *
+ * `:root` bare (no data-theme yet) IS the Light palette — this covers the
+ * instant before ds/themes.ts's initTheme() runs from main.tsx (prod CSP
+ * forbids inline scripts, so nothing can paint the right theme before any JS
+ * executes). Light is the default for every device; a device only paints
+ * `[data-theme='dark']` once the user picks Dark in Settings → Appearance.
+ */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --sunken: #efede7;
+  --border: #dcd8ce;
+  --border-strong: #83807a;
+  --ink: #1f2823;
+  --ink-2: #55605a;
+  /* A11Y-6: darkened from #69756e so muted body text ("Ctrl K", "(optional)",
+     settings hints) clears WCAG AA 4.5:1 on both --bg (5.15:1) and --sunken
+     (4.75:1). Same green-gray hue, dark theme unchanged. */
+  --ink-3: #5f6b64;
+  --accent: #226a4b;
+  --accent-hover: #1b573e;
+  --accent-text: #1b573e;
+  --accent-subtle: #dcebe2;
+  --accent-deep: #164835;
+  --on-accent: #ffffff;
+  --danger: #a6362c;
+  --danger-text: #9c2f26;
+  --on-danger: #ffffff;
+  --danger-subtle: #f9e4e1;
+  --danger-deep: #8a2a22;
+  --warn-subtle: #faf0d9;
+  --warn-deep: #6e4a00;
+  --warn-text: #6e4a00;
+  --info-text: #275f79;
+  --info-subtle: #e0eef4;
+  --info-deep: #22546b;
+  --tag-bg: #eae8e1;
+  --tag-text: #3e4a44;
+  /* Rate INCREASE — the pain the product catches ("The Ledger" accent). A warm
+     rust, semantic sibling of --danger (which stays reserved for destructive /
+     lapsed). AA: --alert-text 5.68:1 on --bg, 6.14 on --surface, 5.25 on
+     --sunken; white on --alert 5.56; --alert-deep 6.55 on --alert-subtle. */
+  --alert: #b04726;
+  --alert-hover: #98401f;
+  --alert-text: #a8401f;
+  --alert-subtle: #f6e3da;
+  --alert-deep: #8a3417;
+  --on-alert: #ffffff;
+  --shadow-1: 0 1px 2px rgb(31 40 35 / 0.07);
+  --shadow-2: 0 2px 8px rgb(31 40 35 / 0.1);
+  --shadow-3: 0 8px 28px rgb(31 40 35 / 0.16);
+  /* DESIGN §22: tactile hover-lift shadow (cards/stats) + a very soft warm-paper
+     atmosphere behind the app background — CSS gradients only, no images/data:
+     URIs (prod CSP is default-src 'self', which does not cover data:). Kept
+     faint enough that it never moves any text/bg pair below its verified ratio
+     in §1.1 — luminance shift at these alphas is <0.5%. */
+  --shadow-hover: 0 12px 28px rgb(31 40 35 / 0.14), 0 2px 6px rgb(31 40 35 / 0.07);
+  --paper-atmosphere: radial-gradient(1100px 620px at 10% -10%, rgb(34 106 75 / 0.05), transparent 60%),
+    radial-gradient(900px 620px at 100% -4%, rgb(31 40 35 / 0.035), transparent 55%),
+    radial-gradient(1200px 700px at 50% 110%, rgb(34 106 75 / 0.03), transparent 60%);
+  /* App UI refresh: a soft accent fill for the active nav row — a mix, so it
+     tracks --accent/--surface per theme. --ink on it stays ≥ 4.5:1
+     (a11y-fixes.test.tsx 'APP-UI --accent-soft'). */
+  --accent-soft: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  /* Hover lift for rows/cards (base.css .kb-lift). Transform/opacity motion
+     needs a shadow that reads as height, not glow. */
+  --shadow-lift: 0 10px 24px rgb(31 40 35 / 0.12), 0 2px 6px rgb(31 40 35 / 0.06);
+}
+
+/*
+ * dark — the original green-ink dark palette, the low-light companion to
+ * Light. Same spruce accent, inverted for night work; dark elevation reads as
+ * borders, not glow (DESIGN-SYSTEM §1.3). Applied only when the user picks it
+ * in Settings → Appearance (data-theme='dark'). Every token AA-verified below.
+ */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #121917;
+  --surface: #1a2320;
+  --sunken: #212c28;
+  --border: #32403a;
+  --border-strong: #64746c;
+  --ink: #e7ece8;
+  --ink-2: #a6b2ab;
+  /* --ink-3 #93a099 clears WCAG AA 4.5:1 on --bg (6.57:1) and holds into
+     --sunken too (5.31:1) — see a11y-fixes.test.tsx 'A11Y-6', which asserts
+     --ink-3 against both --bg and --sunken for every theme. */
+  --ink-3: #93a099;
+  --accent: #4fb284;
+  --accent-hover: #6fc7a0;
+  --accent-text: #6fc7a0;
+  --accent-subtle: #1e3a2e;
+  --accent-deep: #9ad6bb;
+  --on-accent: #0b1712;
+  --danger: #e58779;
+  --danger-text: #f09b90;
+  --on-danger: #1a0e0c;
+  --danger-subtle: #43231f;
+  --danger-deep: #f0a99f;
+  --warn-subtle: #3e312a;
+  --warn-deep: #e3c07e;
+  --warn-text: #dfb566;
+  --info-text: #85bcd8;
+  --info-subtle: #1e3441;
+  --info-deep: #9cc9e0;
+  --tag-bg: #2a3733;
+  --tag-text: #c2ccc6;
+  /* Rate INCREASE accent (warm rust). AA: --alert-text 8.00:1 on --bg;
+     --alert-deep 8.19 on --alert-subtle; dark --on-alert 7.19 on --alert. */
+  --alert: #e08a63;
+  --alert-hover: #eb9a75;
+  --alert-text: #eb9a75;
+  --alert-subtle: #3c2419;
+  --alert-deep: #f0b79b;
+  --on-alert: #1a0e08;
+  /* dark elevation = borders, not glow (DESIGN-SYSTEM §1.3) */
+  --shadow-1: 0 0 0 1px var(--border);
+  --shadow-2: 0 0 0 1px var(--border);
+  --shadow-3: 0 12px 32px rgb(0 0 0 / 0.5), 0 0 0 1px var(--border);
+  --shadow-hover: 0 14px 32px rgb(0 0 0 / 0.55), 0 0 0 1px var(--border-strong);
+  --paper-atmosphere: radial-gradient(1100px 620px at 10% -10%, rgb(79 178 132 / 0.09), transparent 60%),
+    radial-gradient(900px 620px at 100% -4%, rgb(0 0 0 / 0.3), transparent 55%),
+    radial-gradient(1200px 700px at 50% 110%, rgb(79 178 132 / 0.05), transparent 60%);
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  --shadow-lift: 0 14px 32px rgb(0 0 0 / 0.5), 0 0 0 1px var(--border-strong);
+}
+
+:root {
+  /* Typography (§1.4) — system sans for UI/body; DESIGN §22 (2026-08-15,
+     "warm editorial ledger" visual pass) adds ONE self-hosted display serif
+     for the wordmark, page/section headings and stat-card numbers only —
+     see docs/plan/deviations/DESIGN.md for the "no webfonts" deviation.
+     Fraunces is a variable font (wght 300–900) served from web/public/fonts
+     as a same-origin 'self' asset — CSP-safe, fully offline after first load. */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+
+  /* size / line-height pairs. 12px is the floor — nothing smaller. */
+  --text-xs-size: 12px;
+  --text-xs-lh: 16px;
+  --text-sm-size: 13px;
+  --text-sm-lh: 18px;
+  /* App UI refresh (2026-09-14, "the desk, inside"): one notch up so the app
+     reads at the landing's size — base 15/22, md 17/25, lg 22/28. xs/sm stay
+     at the floor (chips, table heads, captions). */
+  --text-base-size: 15px;
+  --text-base-lh: 22px;
+  --text-md-size: 17px;
+  --text-md-lh: 25px;
+  --text-lg-size: 22px;
+  --text-lg-lh: 28px;
+  /* Page titles + stat figures: a small tracked Fraunces display size. Kept
+     clearly above --text-lg so page titles still outrank section headings. */
+  --text-xl-size: 24px;
+  --text-xl-lh: 28px;
+  /* h1 (base.css) and the Dashboard greeting. */
+  --text-2xl-size: 30px;
+  --text-2xl-lh: 34px;
+
+  /* Short aliases for the size scale. The `-size` tokens above are the source
+     of truth; these let feature CSS write `var(--text-lg)` and get the same
+     value. Added in the Ledger pass — several page/section titles referenced
+     the short names, which previously resolved to nothing (so titles fell back
+     to body size). Now they render at their intended scale. */
+  --text-xs: var(--text-xs-size);
+  --text-sm: var(--text-sm-size);
+  --text-base: var(--text-base-size);
+  --text-md: var(--text-md-size);
+  --text-lg: var(--text-lg-size);
+  --text-xl: var(--text-xl-size);
+  --text-2xl: var(--text-2xl-size);
+
+  --weight-body: 400;
+  --weight-label: 500;
+  --weight-heading: 650; /* system stacks render 650 semibold-ish; falls back 600 */
+  --weight-display: 460; /* Fraunces display optical weight (wght axis) */
+
+  /* Tracking (letter-spacing) scale — the Ledger's tight display headings and
+     tracked small-caps labels, in one place instead of magic numbers. */
+  --tracking-tight: -0.022em;
+  --tracking-snug: -0.01em;
+  --tracking-label: 0.02em;
+  --tracking-caps: 0.12em;
+
+  /* Hairline rule — a softened border for editorial dividers (mirrors the
+     landing's --kb-rule). Resolves against the ACTIVE theme's --border. */
+  --rule: color-mix(in srgb, var(--border) 62%, transparent);
+
+  /* Spacing scale (§1.5): 2, 4, 8, 12, 16, 24, 32, 48 */
+  --space-0: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+
+  /* Motion (§1.5): nothing bounces */
+  --motion-fast: 120ms ease-out;
+  --motion-med: 180ms ease-out;
+  --motion-drop: 200ms ease-out;
+  /* App UI refresh: the landing's "pop" — a fast start and a soft settle.
+     Entrances in base.css (kb-pop) and the DS overlays use it. */
+  --ease-pop: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-pop: 420ms var(--ease-pop);
+
+  /* Z-index (§1.5) */
+  --z-table-header: 10;
+  --z-app-header: 20;
+  --z-popover: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  /* Layout */
+  --nav-width: 200px;
+  --nav-width-collapsed: 56px;
+  --content-max: 1320px;
+  --scrim: rgb(18 25 23 / 0.5);
+}

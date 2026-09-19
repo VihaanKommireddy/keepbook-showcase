@@ -1,0 +1,85 @@
+.kb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+  font-weight: var(--weight-label);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--motion-fast), color var(--motion-fast),
+    border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.kb-btn--sm {
+  height: 28px;
+  padding: 0 10px;
+}
+
+.kb-btn--lg {
+  height: 40px;
+  padding: 0 18px;
+}
+
+.kb-btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  /* A tactile raised edge — the fill stays flat --accent so the on-accent
+     text contrast that tokens.css verifies is untouched; the highlight is a
+     1px top sheen only. */
+  box-shadow: var(--shadow-1), inset 0 1px 0 color-mix(in srgb, white 20%, transparent);
+}
+
+.kb-btn--primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.kb-btn--secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-1);
+}
+
+.kb-btn--ghost {
+  background: transparent;
+  color: var(--ink-2);
+}
+
+.kb-btn--secondary:hover:not(:disabled),
+.kb-btn--ghost:hover:not(:disabled) {
+  background: var(--sunken);
+  color: var(--ink);
+}
+
+.kb-btn--danger {
+  background: var(--danger);
+  color: var(--on-danger);
+  box-shadow: var(--shadow-1), inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+}
+
+.kb-btn--danger:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.kb-btn:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.kb-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* coarse pointers get ≥44px targets (§3 preamble) */
+@media (pointer: coarse) {
+  .kb-btn {
+    min-height: 44px;
+  }
+}

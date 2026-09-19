@@ -1,0 +1,84 @@
+.kb-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.kb-field__label {
+  font-weight: var(--weight-label);
+  color: var(--ink-2);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+}
+
+.kb-field__optional {
+  font-weight: var(--weight-body);
+  color: var(--ink-3);
+}
+
+.kb-field__input {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+  transition: border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.kb-field__input:hover:not(:disabled):not(:focus) {
+  border-color: var(--ink-3);
+}
+
+.kb-field__input--area {
+  height: auto;
+  padding: 6px 10px;
+  resize: vertical;
+}
+
+.kb-field__input::placeholder {
+  color: var(--ink-3);
+}
+
+/* focus = the global ring; the border stays (§3.2) */
+
+.kb-field__input:disabled {
+  background: var(--sunken);
+}
+
+.kb-field--error .kb-field__input {
+  border-color: var(--danger);
+}
+
+.kb-field--error .kb-field__input:focus-visible {
+  outline-color: var(--danger);
+}
+
+.kb-field__input--numeric {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.kb-field__help {
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  color: var(--ink-3);
+}
+
+.kb-field__error {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  color: var(--danger-text);
+}
+
+@media (pointer: coarse) {
+  .kb-field__input {
+    height: 36px;
+  }
+}

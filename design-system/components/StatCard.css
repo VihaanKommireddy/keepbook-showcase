@@ -1,0 +1,122 @@
+.kb-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .kb-stat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.kb-stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+/* Hairline spruce accent (DESIGN §22): rests at low opacity, sweeps in on
+   hover/focus — "earns attention" instead of decorating every card equally. */
+.kb-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.35;
+  transform: scaleX(0.22);
+  transform-origin: left;
+  transition: opacity var(--motion-med), transform var(--motion-med);
+}
+
+/* The lift itself comes from base.css kb-lift (transform + --shadow-lift);
+   the transition is restated here because `transition` is one property and a
+   later component rule would otherwise drop the transform/box-shadow pair. */
+.kb-stat--link {
+  box-shadow: var(--shadow-1);
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast), border-color var(--motion-med);
+}
+
+.kb-stat--link:hover,
+.kb-stat--link:focus-visible {
+  border-color: var(--border-strong);
+}
+
+.kb-stat--link:hover::before,
+.kb-stat--link:focus-visible::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.kb-stat__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.kb-stat__label {
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--ink-2);
+  font-weight: var(--weight-label);
+}
+
+.kb-stat__icon {
+  flex: none;
+  color: var(--ink-3);
+  opacity: 0.8;
+  transition: color var(--motion-med), opacity var(--motion-med);
+}
+
+.kb-stat--link:hover .kb-stat__icon,
+.kb-stat--link:focus-visible .kb-stat__icon {
+  color: var(--accent-text);
+  opacity: 1;
+}
+
+.kb-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-xl-size);
+  line-height: var(--text-xl-lh);
+  font-weight: var(--weight-heading);
+  letter-spacing: var(--tracking-snug);
+  font-optical-sizing: auto;
+  font-variant-numeric: tabular-nums lining-nums;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.kb-stat__delta {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  font-weight: var(--weight-label);
+  letter-spacing: normal;
+}
+
+.kb-stat__delta--good {
+  color: var(--accent-text);
+}
+
+.kb-stat__delta--bad {
+  color: var(--danger-text);
+}
+
+.kb-stat__context {
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  color: var(--ink-3);
+}

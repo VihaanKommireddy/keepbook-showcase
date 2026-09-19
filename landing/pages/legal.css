@@ -1,0 +1,86 @@
+/* The legal pages (round 2 §4): a 68ch measure inside the landing's shell.
+   Tokens only; both themes; the Fraunces h1 and sentence-case h2s come from
+   ds/base.css, so nothing here restates a size the design system owns. */
+
+.kb-legal__main {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 72px) var(--kb-land-gutter) clamp(48px, 8vw, 96px);
+}
+
+.kb-legal__title {
+  margin: 0 0 var(--space-2);
+}
+
+.kb-legal__effective {
+  margin: 0 0 var(--space-6);
+  color: var(--ink-2);
+}
+
+.kb-legal__main h2 {
+  margin: var(--space-6) 0 var(--space-2);
+}
+
+.kb-legal__main h3 {
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+.kb-legal__main p,
+.kb-legal__main li {
+  color: var(--ink-2);
+}
+
+.kb-legal__main p {
+  margin: 0 0 var(--space-3);
+}
+
+.kb-legal__main ul {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-5);
+}
+
+.kb-legal__main li {
+  margin-bottom: var(--space-2);
+}
+
+.kb-legal__main strong {
+  color: var(--ink);
+}
+
+.kb-legal__main code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* The provider table in Privacy §5.2. Scrolls on its own on a phone rather
+   than pushing the page sideways. */
+.kb-legal__tablewrap {
+  overflow-x: auto;
+  margin: 0 0 var(--space-4);
+}
+
+.kb-legal__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+}
+
+.kb-legal__table th,
+.kb-legal__table td {
+  border: 1px solid var(--border);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  vertical-align: top;
+  color: var(--ink-2);
+}
+
+.kb-legal__table th {
+  color: var(--ink);
+  font-weight: var(--weight-label);
+  background: var(--sunken);
+}
+
+.kb-legal__contact {
+  margin: 0;
+}

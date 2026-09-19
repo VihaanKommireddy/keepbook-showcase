@@ -1,0 +1,187 @@
+.kb-calgrid__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+}
+
+.kb-calgrid__title {
+  font-size: var(--text-md-size);
+  line-height: var(--text-md-lh);
+  margin-right: var(--space-2);
+}
+
+.kb-calgrid__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.kb-calgrid__todaybtn {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-sm-size);
+  cursor: pointer;
+}
+
+.kb-calgrid__step:hover,
+.kb-calgrid__todaybtn:hover {
+  background: var(--sunken);
+}
+
+.kb-calgrid__totals {
+  margin-left: auto;
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+}
+
+.kb-calgrid__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.kb-calgrid__table th {
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: var(--weight-label);
+  color: var(--ink-2);
+  padding: var(--space-1);
+  text-align: left;
+}
+
+.kb-calgrid__day {
+  position: relative;
+  vertical-align: top;
+  min-height: 96px;
+  height: 96px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: var(--space-1);
+}
+
+.kb-calgrid__day--out {
+  background: var(--bg);
+}
+
+.kb-calgrid__day--out .kb-calgrid__daynum {
+  color: var(--ink-3);
+}
+
+.kb-calgrid__day--today {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.kb-calgrid__day--focused {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+.kb-calgrid__daynum {
+  font-size: var(--text-sm-size);
+  color: var(--ink-2);
+}
+
+.kb-calgrid__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.kb-calgrid__entry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  padding: 1px var(--space-1);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+}
+
+.kb-calgrid__entry:hover {
+  background: var(--sunken);
+}
+
+.kb-calgrid__entry--filing {
+  border-left-color: var(--warn-deep);
+}
+
+.kb-calgrid__entrylabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kb-calgrid__entrydetail {
+  margin-left: auto;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.kb-calgrid__more {
+  border: 0;
+  background: transparent;
+  color: var(--accent-text);
+  font-size: var(--text-xs-size);
+  text-align: left;
+  padding: 1px var(--space-1);
+  cursor: pointer;
+}
+
+.kb-calgrid__daypopover {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-popover);
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  padding: var(--space-2);
+}
+
+.kb-calgrid__daypopover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: var(--weight-label);
+  padding-bottom: var(--space-1);
+}
+
+.kb-calgrid__daypopover-close {
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  display: inline-flex;
+  padding: var(--space-1);
+}
+
+.kb-calgrid__dayempty {
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+}

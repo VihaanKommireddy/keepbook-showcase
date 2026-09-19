@@ -1,0 +1,37 @@
+.kb-popover-anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.kb-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: var(--z-popover);
+  min-width: 180px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  padding: var(--space-2);
+  animation: kb-popover-in var(--motion-med);
+}
+
+.kb-popover--start {
+  left: 0;
+}
+
+.kb-popover--end {
+  right: 0;
+}
+
+@keyframes kb-popover-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,87 @@
+.kb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  font-weight: var(--weight-label);
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.kb-badge--green {
+  background: var(--accent-subtle);
+  color: var(--accent-deep);
+  border-color: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.kb-badge--blue {
+  background: var(--info-subtle);
+  color: var(--info-deep);
+  border-color: color-mix(in srgb, var(--info-text) 24%, transparent);
+}
+
+.kb-badge--amber {
+  background: var(--warn-subtle);
+  color: var(--warn-deep);
+  border-color: color-mix(in srgb, var(--warn-text) 26%, transparent);
+}
+
+.kb-badge--red {
+  background: var(--danger-subtle);
+  color: var(--danger-deep);
+  border-color: color-mix(in srgb, var(--danger-text) 26%, transparent);
+}
+
+.kb-badge--neutral {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-color: color-mix(in srgb, var(--border-strong) 30%, transparent);
+}
+
+.kb-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  white-space: nowrap;
+}
+
+.kb-tag__auto {
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: var(--weight-label);
+}
+
+.kb-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: -4px -2px -4px 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  /* padded hit area to 24px (§3.6) */
+  box-sizing: content-box;
+  padding: 4px;
+}
+
+.kb-tag__remove:hover {
+  background: var(--border);
+}

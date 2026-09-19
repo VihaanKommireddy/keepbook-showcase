@@ -1,0 +1,39 @@
+/* SectionNav — mirrors Tabs.css's underline strip (same tokens) for a set of
+   real page links rather than a single tabpanel. Sits directly under a
+   PageHeader. */
+
+.kb-sectionnav {
+  display: flex;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  margin-bottom: var(--space-4);
+}
+
+.kb-sectionnav__link {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 0 var(--space-1);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--ink-2);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+  font-weight: var(--weight-label);
+  text-decoration: none;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+}
+
+.kb-sectionnav__link:hover {
+  color: var(--ink);
+}
+
+.kb-sectionnav__link--active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}

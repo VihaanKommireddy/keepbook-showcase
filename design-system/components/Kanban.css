@@ -1,0 +1,169 @@
+.kb-kanban {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.kb-kanban__col {
+  flex: none;
+  width: 280px;
+  background: var(--sunken);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  max-height: 100%;
+}
+
+.kb-kanban__col--target {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+
+.kb-kanban__colhead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-2);
+  font-weight: var(--weight-label);
+}
+
+.kb-kanban__count {
+  padding: 0 8px;
+  border-radius: var(--radius-full);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+}
+
+.kb-kanban__sum {
+  margin-left: auto;
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+}
+
+.kb-kanban__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow-y: auto;
+}
+
+.kb-kanban__card {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-4);
+  cursor: grab;
+  border-left: 3px solid transparent;
+  transition: box-shadow var(--motion-fast), background-color var(--motion-fast);
+}
+
+/* Single-click open (app UI refresh §5): pointer + the --sunken hover fill.
+   The lift (kb-lift) keeps the card reading as raised over the track. */
+.kb-kanban__card--openable {
+  cursor: pointer;
+}
+
+.kb-kanban__card--openable:hover {
+  background: var(--sunken);
+}
+
+.kb-kanban__card--lifted {
+  box-shadow: var(--shadow-2);
+  rotate: 2deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kb-kanban__card--lifted {
+    rotate: none;
+  }
+}
+
+.kb-kanban__card--edge-stale {
+  border-left-color: var(--warn-deep);
+}
+
+.kb-kanban__card--edge-overdue {
+  border-left-color: var(--danger);
+}
+
+.kb-kanban__cardrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.kb-kanban__cardtitle {
+  font-weight: var(--weight-label);
+}
+
+.kb-kanban__cardmeta {
+  color: var(--ink-2);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+}
+
+.kb-kanban__cardamount {
+  text-align: right;
+}
+
+.kb-kanban__cardfooter {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.kb-kanban__insertion {
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  margin: 2px 0;
+}
+
+.kb-kanban__showmore {
+  width: 100%;
+  margin-top: var(--space-2);
+  border: 0;
+  background: transparent;
+  color: var(--accent-text);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  padding: var(--space-1);
+  cursor: pointer;
+}
+
+.kb-kanban__movemenu {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.kb-kanban__moveitem {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: var(--text-base-size);
+  cursor: pointer;
+}
+
+.kb-kanban__moveitem:hover {
+  background: var(--sunken);
+}
+
+/* One column per swipe viewport on small screens (§2 responsive) */
+@media (max-width: 768px) {
+  .kb-kanban {
+    scroll-snap-type: x mandatory;
+  }
+
+  .kb-kanban__col {
+    width: 85vw;
+    scroll-snap-align: start;
+  }
+}

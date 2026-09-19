@@ -1,0 +1,59 @@
+.kb-tabs__list {
+  display: flex;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  /* VIS-1: the tab strip self-scrolls inside its own overflow-x container so a
+     wide strip (e.g. Reports at 375px) never pushes the page body sideways and
+     never clips the last tab. */
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.kb-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 40px;
+  /* Never let a tab shrink below its label or clip — it scrolls instead. */
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 0 var(--space-1);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+  font-weight: var(--weight-label);
+  cursor: pointer;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+}
+
+.kb-tabs__tab:hover {
+  color: var(--ink);
+}
+
+.kb-tabs__tab--active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.kb-tabs__count {
+  color: var(--ink-3);
+  font-weight: var(--weight-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.kb-tabs__panel {
+  padding-top: var(--space-4);
+}
+
+/* The panel is keyed by the active tab (Tabs.tsx), so switching remounts it
+   and this entrance runs once per switch. */
+@media (prefers-reduced-motion: no-preference) {
+  .kb-tabs__panel--enter {
+    animation: kb-pop 220ms var(--ease-pop) backwards;
+  }
+}

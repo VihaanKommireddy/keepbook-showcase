@@ -1,0 +1,832 @@
+/*
+ * Landing page, "the desk" (2026-09-14). Semantic tokens only (ds/tokens.css);
+ * the two landing-only colors are mixed from them. Layout is mobile-first;
+ * the hero becomes two columns at 960px. Motion: transform/opacity only,
+ * everything gated by prefers-reduced-motion at the bottom of this file.
+ */
+
+.kb-land {
+  --kb-land-deep: color-mix(in srgb, var(--accent) 38%, var(--ink));
+  --kb-land-deep-ink: color-mix(in srgb, var(--bg) 88%, var(--accent));
+  --kb-land-deep-muted: color-mix(in srgb, var(--bg) 62%, var(--accent));
+  --kb-land-max: 1180px;
+  --kb-land-gutter: clamp(20px, 4vw, 48px);
+  --kb-scroll: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.kb-land a {
+  color: inherit;
+}
+
+.kb-land :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- masthead ---------- */
+
+.kb-land__masthead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px var(--kb-land-gutter);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.kb-land__wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.kb-land__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.kb-land__nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kb-land__navlink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: var(--weight-label);
+  color: var(--ink-2);
+  transition: color var(--motion-fast), background-color var(--motion-fast);
+}
+
+.kb-land__navlink:hover {
+  color: var(--ink);
+  background: var(--sunken);
+}
+
+.kb-land__navcta {
+  margin-left: 6px;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+@media (max-width: 560px) {
+  .kb-land__navcta,
+  .kb-land__navlink--wide {
+    display: none; /* the sticky pill and the closing section carry both asks on a phone */
+  }
+}
+
+.kb-land__navlink {
+  white-space: nowrap;
+}
+
+/* ---------- layout ---------- */
+
+.kb-land__main {
+  display: block;
+}
+
+.kb-land__hero,
+.kb-land__how,
+.kb-land__early,
+.kb-land__numbersinner {
+  width: min(100%, var(--kb-land-max));
+  margin: 0 auto;
+  padding-inline: var(--kb-land-gutter);
+}
+
+/* ---------- type ---------- */
+
+.kb-land__eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.kb-land__title {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: clamp(38px, 6.4vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.kb-land__title em {
+  display: block;
+  margin-top: 0.12em;
+  font-style: italic;
+  font-weight: 420;
+  color: var(--accent-text);
+}
+
+.kb-land__h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.kb-land__h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(23px, 2.6vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.kb-land__lede {
+  margin: 0 0 24px;
+  max-width: 34em;
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* ---------- hero ---------- */
+
+.kb-land__hero {
+  display: grid;
+  gap: 40px;
+  padding-top: clamp(40px, 7vw, 88px);
+  padding-bottom: clamp(48px, 8vw, 110px);
+}
+
+@media (min-width: 960px) {
+  .kb-land__hero {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+  }
+}
+
+.kb-land__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.kb-land__cta .kb-btn--lg {
+  height: 46px;
+  padding: 0 20px;
+  font-size: 16px;
+  border-radius: 999px;
+}
+
+.kb-land__proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* every item carries its own mark, so a wrapped line never starts with a stray dot */
+.kb-land__proof span::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  vertical-align: 2px;
+  opacity: 0.7;
+}
+
+/* The desk: three real screens stacked like papers. Each card's resting
+   offset and tilt come from its index (--i: 0 front, 2 back); --kb-scroll is
+   the page offset written by useScrollVar and multiplied into a small drift,
+   larger for the back cards so they separate as you scroll. */
+
+.kb-land__desk {
+  position: relative;
+  aspect-ratio: 16 / 13;
+  width: 100%;
+}
+
+.kb-land__screen {
+  position: absolute;
+  inset: auto 0 0 0;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-3);
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.kb-land__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.kb-land__screen figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 82%, transparent);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* resting positions */
+.kb-land__screen--rates {
+  z-index: 3;
+  width: 88%;
+  left: 0;
+  right: auto;
+  transform: translate3d(0, calc(var(--kb-scroll) * -0.04px), 0);
+}
+
+.kb-land__screen--autopilot {
+  z-index: 2;
+  width: 82%;
+  left: auto;
+  right: 0;
+  bottom: 14%;
+  transform: translate3d(0, calc(var(--kb-scroll) * -0.11px), 0) rotate(1.4deg);
+}
+
+.kb-land__screen--intake {
+  z-index: 1;
+  width: 70%;
+  left: 6%;
+  right: auto;
+  bottom: 30%;
+  transform: translate3d(0, calc(var(--kb-scroll) * -0.18px), 0) rotate(-2.2deg);
+  opacity: 0.96;
+}
+
+/* The moving objects: three small, real UI states floating over the desk.
+   They pop in after the screens and then drift a few pixels on a slow loop;
+   the loop is defined in the motion block at the bottom and switched off
+   under reduced motion, where they simply sit still. */
+
+.kb-land__chip {
+  position: absolute;
+  z-index: 4;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-hover);
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.kb-land__chip b {
+  font-weight: 650;
+  color: var(--accent-text);
+}
+
+.kb-land__chipdot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.kb-land__chipbtn {
+  margin-left: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  font-size: 12px;
+  font-weight: var(--weight-label);
+  color: var(--ink-2);
+}
+
+.kb-land__chip--filing {
+  top: 6%;
+  left: -2%;
+  --drift: -0.09;
+}
+
+.kb-land__chip--held {
+  top: 44%;
+  right: -3%;
+  --drift: -0.14;
+}
+
+.kb-land__chip--intake {
+  bottom: -4%;
+  left: 18%;
+  --drift: -0.02;
+}
+
+@media (max-width: 959px) {
+  .kb-land__chip--filing {
+    left: 0;
+  }
+
+  .kb-land__chip--held {
+    right: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .kb-land__chip {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+
+  .kb-land__chip--intake {
+    display: none;
+  }
+}
+
+/* ---------- what it does ---------- */
+
+.kb-land__how {
+  padding-top: clamp(24px, 4vw, 48px);
+  padding-bottom: clamp(24px, 4vw, 48px);
+}
+
+.kb-land__how .kb-land__h2 {
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+.kb-land__h2--center {
+  text-align: center;
+}
+
+/* The tour: the design system's Tabs, restyled as a centered strip of big
+   display-face labels (AgencyZoom's "built for your agency type" strip),
+   with one panel below that swaps screen + paragraph. --kb-tab-h is shared
+   by the tab height and the auto-advance timer line under the strip. */
+
+.kb-land__tabs {
+  --kb-tab-h: 56px;
+  position: relative;
+}
+
+.kb-land__tabs .kb-tabs__list {
+  justify-content: center;
+  gap: clamp(18px, 5vw, 56px);
+  border-bottom: 1px solid var(--border);
+}
+
+.kb-land__tabs .kb-tabs__tab {
+  height: var(--kb-tab-h);
+  padding: 0 4px;
+  border-bottom-width: 3px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 2.2vw, 25px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink-3);
+}
+
+.kb-land__tabs .kb-tabs__tab:hover {
+  color: var(--ink);
+}
+
+.kb-land__tabs .kb-tabs__tab--active {
+  color: var(--ink);
+}
+
+.kb-land__tabs .kb-tabs__panel {
+  position: relative;
+  padding-top: clamp(28px, 4vw, 52px);
+}
+
+.kb-land__tabtimer {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+.kb-land__panel {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  min-height: min(52vw, 520px);
+}
+
+@media (min-width: 860px) {
+  .kb-land__panel {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(28px, 5vw, 72px);
+  }
+}
+
+.kb-land__blocktext p:last-child {
+  margin: 0;
+  max-width: 30em;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.kb-land__blockshot {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+  background: var(--surface);
+}
+
+.kb-land__blockshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- the numbers stop (deep-green cards inside the tour panel) ---------- */
+
+.kb-land__blockfoot {
+  margin-top: 18px !important;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.kb-land__blockfoot a {
+  color: var(--accent-text);
+  text-underline-offset: 3px;
+}
+
+.kb-land__figures {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--kb-land-deep-ink);
+}
+
+@media (min-width: 600px) {
+  .kb-land__figures {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 860px) {
+  .kb-land__figures {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.kb-land__figure {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'line approved'
+    'asked approved'
+    'note approved';
+  column-gap: 20px;
+  align-items: center;
+  padding: 18px 22px;
+  border-radius: 12px;
+  background: var(--kb-land-deep);
+  border: 1px solid color-mix(in srgb, var(--kb-land-deep-ink) 14%, transparent);
+}
+
+.kb-land__figureline {
+  grid-area: line;
+}
+
+.kb-land__figureasked {
+  grid-area: asked;
+}
+
+.kb-land__figurenote {
+  grid-area: note;
+}
+
+.kb-land__figureapproved {
+  grid-area: approved;
+}
+
+.kb-land__figure p {
+  margin: 0;
+}
+
+.kb-land__figureline {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kb-land-deep-muted);
+}
+
+.kb-land__figureasked {
+  margin-top: 6px !important;
+  font-size: 15px;
+  color: var(--kb-land-deep-muted);
+}
+
+.kb-land__figureasked s {
+  text-decoration-color: color-mix(in srgb, var(--kb-land-deep-ink) 60%, transparent);
+}
+
+.kb-land__figureapproved {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 4.4vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.kb-land__figurenote {
+  margin-top: 6px !important;
+  font-size: 13.5px;
+  color: var(--kb-land-deep-muted);
+}
+
+/* ---------- early access ---------- */
+
+.kb-land__early {
+  margin-top: clamp(16px, 3vw, 32px);
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.kb-land__early .kb-land__lede {
+  margin-inline: auto;
+}
+
+.kb-land__early .kb-btn--lg {
+  height: 46px;
+  padding: 0 22px;
+  font-size: 16px;
+  border-radius: 999px;
+}
+
+/* ---------- footer ---------- */
+
+.kb-land__footer {
+  display: grid;
+  gap: 12px;
+  width: min(100%, var(--kb-land-max));
+  margin: 0 auto;
+  padding: 28px var(--kb-land-gutter) 40px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+@media (min-width: 720px) {
+  .kb-land__footer {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .kb-land__footernote {
+    grid-column: 1 / -1;
+  }
+}
+
+.kb-land__footer p {
+  margin: 0;
+}
+
+.kb-land__footerbrand {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.kb-land__footernav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.kb-land__footernav a {
+  color: var(--ink-2);
+  text-decoration: none;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.kb-land__footernav a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes kb-land-pop {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+    scale: 0.985;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes kb-land-drift {
+  from {
+    translate: 0 -5px;
+  }
+
+  to {
+    translate: 0 6px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* hero screens pop in back-to-front on load */
+  .kb-land__screen {
+    animation: kb-land-pop 640ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(120ms + (2 - var(--i)) * 140ms);
+  }
+
+  .kb-land__pitch {
+    animation: kb-land-pop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  /* chips: pop in after the screens, then a slow drift that never stops */
+  .kb-land__chip {
+    animation:
+      kb-land-pop 560ms cubic-bezier(0.2, 0.8, 0.2, 1) 760ms both,
+      kb-land-drift 7s ease-in-out 1320ms infinite alternate;
+  }
+
+  .kb-land__chip--held {
+    animation-delay: 900ms, 1460ms;
+    animation-duration: 560ms, 8.5s;
+  }
+
+  .kb-land__chip--intake {
+    animation-delay: 1040ms, 1600ms;
+    animation-duration: 560ms, 6.2s;
+  }
+
+  /* everything below the hero reveals once, on entering the viewport */
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition: opacity 560ms ease-out, transform 560ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* the numbers stop: cards enter one after another */
+  .kb-land__panel .kb-land__figure {
+    animation: kb-land-pop 460ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .kb-land__panel .kb-land__figure:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .kb-land__panel .kb-land__figure:nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  /* tour panel: each stop enters once, text first, screen a beat later */
+  .kb-land__panel .kb-land__blocktext {
+    animation: kb-land-pop 460ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .kb-land__panel .kb-land__blockshot {
+    animation: kb-land-pop 560ms cubic-bezier(0.2, 0.8, 0.2, 1) 90ms both;
+  }
+
+  .kb-land__tabtimer {
+    animation: kb-land-timer 7s linear forwards;
+  }
+}
+
+@keyframes kb-land-timer {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kb-land {
+    --kb-scroll: 0;
+  }
+
+  .kb-land__screen {
+    transition: none;
+  }
+}
+
+/* The closing section is centred text; its pair of buttons centres too. */
+.kb-land__cta--center {
+  justify-content: center;
+}
+
+/* The sticky "Request a demo": a pill pinned bottom-right once the hero's own
+   button has scrolled off. Hidden attribute handles presence; this is the look. */
+.kb-land__sticky[hidden] {
+  display: none; /* .kb-btn sets display; the hidden attribute must still win */
+}
+
+.kb-land__sticky {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  height: 48px;
+  padding: 0 22px;
+  font-size: 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-lift);
+}
+
+@media (max-width: 560px) {
+  .kb-land__sticky {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kb-land__sticky:not([hidden]) {
+    animation: kb-pop 280ms var(--ease-pop) backwards;
+  }
+}

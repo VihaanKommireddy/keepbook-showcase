@@ -1,0 +1,79 @@
+.dsg-panes {
+  display: grid;
+  /* THEMES: two panes (Light + Dark) — auto-fit keeps them at a readable
+     2-up (or 1-up narrow). */
+  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 1100px) {
+  .dsg-panes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dsg-pane {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  min-width: 0;
+}
+
+.dsg-section {
+  margin-top: var(--space-5);
+}
+
+.dsg-section__title {
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  margin-bottom: var(--space-3);
+}
+
+.dsg-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dsg-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.dsg-grid1 {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.dsg-muted {
+  color: var(--ink-2);
+}
+
+.dsg-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.dsg-icon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 72px;
+  color: var(--ink);
+}
+
+.dsg-icon__name {
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  color: var(--ink-3);
+}

@@ -1,0 +1,20 @@
+/* Card — an editorial panel ("The Ledger"): warm surface, hairline border,
+   a soft radius, and a restrained shadow. Same single class + API. */
+.kb-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-5);
+}
+
+.kb-card--interactive {
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .kb-card {
+    padding: var(--space-4);
+  }
+}

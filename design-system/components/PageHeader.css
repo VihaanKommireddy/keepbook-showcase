@@ -1,0 +1,86 @@
+/* PageHeader — the landing masthead's voice, inside the app: a mono eyebrow,
+   the Fraunces h1 (base.css sets its size/weight), a quiet lede, and the
+   page's actions on the right. Tokens only; both themes. */
+
+.kb-page__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.kb-page__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  flex: 1 1 320px;
+}
+
+.kb-page__eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.kb-page__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.kb-page__meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm-size);
+  line-height: var(--text-sm-lh);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.kb-page__lede {
+  margin: var(--space-1) 0 0;
+  max-width: 64ch;
+  color: var(--ink-2);
+  font-size: var(--text-base-size);
+  line-height: var(--text-base-lh);
+}
+
+.kb-page__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  flex: none;
+}
+
+@media (max-width: 720px) {
+  .kb-page__head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* In a column, flex-basis is height: the 320px basis above would open a
+     320px gap between the title and the actions. Size to content instead. */
+  .kb-page__text {
+    flex: 0 0 auto;
+  }
+
+  .kb-page__actions {
+    justify-content: flex-start;
+  }
+}
+
+/* The header itself carries the page-enter animation (spec §2/§4). */
+@media (prefers-reduced-motion: no-preference) {
+  .kb-page__head {
+    animation: kb-pop 380ms var(--ease-pop) backwards;
+  }
+}

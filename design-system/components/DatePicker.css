@@ -1,0 +1,123 @@
+.kb-datepicker__row {
+  display: flex;
+  gap: var(--space-1);
+  align-items: stretch;
+}
+
+.kb-datepicker__row .kb-field__input {
+  flex: 1;
+}
+
+.kb-datepicker__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.kb-datepicker__toggle:hover {
+  background: var(--sunken);
+}
+
+.kb-datepicker__presets {
+  display: flex;
+  gap: var(--space-1);
+  padding-bottom: var(--space-2);
+}
+
+.kb-datepicker__preset {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-sm-size);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+}
+
+.kb-datepicker__preset:hover {
+  background: var(--sunken);
+}
+
+.kb-datepicker__monthbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-1);
+}
+
+.kb-datepicker__monthtitle {
+  font-weight: var(--weight-label);
+}
+
+.kb-datepicker__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.kb-datepicker__step:hover {
+  background: var(--sunken);
+}
+
+.kb-datepicker__grid {
+  border-collapse: collapse;
+}
+
+.kb-datepicker__grid th {
+  font-size: var(--text-xs-size);
+  line-height: var(--text-xs-lh);
+  color: var(--ink-3);
+  font-weight: var(--weight-label);
+  padding: var(--space-1);
+}
+
+.kb-datepicker__grid td {
+  padding: 1px;
+}
+
+.kb-datepicker__day {
+  width: 32px;
+  height: 32px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--text-sm-size);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
+.kb-datepicker__day:hover {
+  background: var(--sunken);
+}
+
+.kb-datepicker__day--out {
+  color: var(--ink-3);
+}
+
+.kb-datepicker__day--today {
+  border-color: var(--accent);
+}
+
+.kb-datepicker__day--selected {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.kb-datepicker__day--focused {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
